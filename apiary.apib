@@ -1,0 +1,108 @@
+FORMAT: 1A
+HOST: https://rest-api-point-table.herokuapp.com/
+
+# pointTableAPI
+
+A simple API allowing users to interact with contact info.
+
+### Allowed HTTPs requests:
+<pre>
+POST    : To create resource 
+PUT     : Update resource
+GET     : Get a resource or list of resources
+DELETE  : To delete resource
+</pre>
+
+### Description Of Usual Server Responses:
+- 200 `OK` - the request was successful (some API calls may return 201 instead).
+- 201 `Created` - the request was successful and a resource was created.
+- 204 `No Content` - the request was successful but there is no representation to return (i.e. the response is empty).
+- 400 `Bad Request` - the request could not be understood or was missing required parameters.
+- 404 `Not Found` - resource was not found.
+- 405 `Method Not Allowed` - requested method is not supported for resource.
+
+---
+**User attributes:**
+
+- id `(Number)` : unique identifier. 
+- Team_Name `(String)` : Name of a Team.
+- Played `(Int)` : Number of played match. 
+- Won `(Int)` : Number of Won match.
+- Lost `(Int)` : Number of Lost Match. 
+- Tied `(Int)` : Number tied Match.
+- Point `(Int)` : Total Point. 
+- NRR `(Double)` : Net run rate.
+---
+
+## Informations : [/pointTable/]
+---
+
+### Get all data[GET]
+
++ Response 200 (application/json)
+[{"_id":{"timestamp":1555954539,"machineIdentifier":1875268,"processIdentifier":0,"counter":3171934,"time":1555954539000,"date":"2019-04-22T17:35:39.000+0000","timeSecond":1555954539},"Team_Name":"Mac OS","Played":4,"Won":3,"Lost":1,"Tied":0,"Point":6,"NRR":1.86,"team_Name":"Mac OS","played":4,"won":3,"lost":1,"tied":0,"point":6,"nrr":1.86}]
+### Add new data [POST]
+
++ Request (application/json)
+
+        {
+            "Team_Name": "Mac OS",
+            "Played": 4,
+            "Won": 3,
+            "Lost": 1,
+            "Tied": 0,
+            "Point": 6,
+            "NRR": 1.86
+        }
+
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /pointTable/id
+
+    + Body
+
+            {   
+                "_id": "5cbc5ea01c9e544050f854sd",
+                "Team_Name": "Mac OS",
+                "Played": 4,
+                "Won": 3,
+                "Lost": 1,
+                "Tied": 0,
+                "Point": 6,
+                "NRR": 1.86
+            }
+            
+## Access Informations by id : [/pointTable/{id}]
+
+---
+
+### Get a spacific data [GET]
+
+
++ Parameters
+    + id (number) - ID of the User in the form of a string
+
++ Response 200 (application/json)
+    
+        {   
+                "_id": "5cbc5ea01c9e544050f854sd",
+                "Team_Name": "Mac OS",
+                "Played": 4,
+                "Won": 3,
+                "Lost": 1,
+                "Tied": 0,
+                "Point": 6,
+                "NRR": 1.86
+        }
+ 
+
+### Delete  a spacific data [DELETE]
+
+
++ Parameters
+    + id (number) - ID of the User in the form of a string
+
++ Response 200
